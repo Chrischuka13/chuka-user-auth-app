@@ -1,6 +1,12 @@
 import React from 'react'
 
-const UserProfile = ({params}: {params: {id: string}}) => {
+interface UserProfileProps {
+  params: {
+    id: string;
+  };
+}
+
+const UserProfile = ({params}: UserProfileProps) => {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
         <h1>User Profile</h1>
