@@ -47,12 +47,9 @@ export const sendEmail = async({email, emailType, userId} : {email:string, email
 
         return mailResponse;
         
-    } catch (error :any) {
-        throw new Error(error.message)
-    }
+    } catch (error: unknown) {
+        throw error instanceof Error 
+        ? error : new Error("Unknown error occurred");
 }
 
-
-
-
-            
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const userProfile = ({params}: any) => {
+const UserProfile = ({params}: any) => {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
         <h1>User Profile</h1>
@@ -11,4 +11,4 @@ const userProfile = ({params}: any) => {
   )
 }
 
-export default userProfile
+export default UserProfile

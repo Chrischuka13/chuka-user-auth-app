@@ -14,8 +14,8 @@ export async function GET(request :NextRequest) {
             data: user
         })
        
-    } catch (error: any) {
-        console.error("Auth error:",error.message)
-        return NextResponse.json({message: "not authorized"}, {status: 401})
+    } catch (error :unknown) {
+       const errorMessage = error instanceof Error ? error.message : 'not authorized'
+       return NextResponse.json({error: errorMessage}, {status: 500})
     }
 }

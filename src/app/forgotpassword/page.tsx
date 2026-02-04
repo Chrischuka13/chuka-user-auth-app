@@ -1,10 +1,9 @@
 "use client"
 import axios from 'axios'
-import toast from 'react-hot-toast'
-import React, { JSX } from 'react'
+import React from 'react'
 import { MoonLoader } from 'react-spinners'
 
-const forgotpassword = () => {
+const Forgotpassword = () => {
     const [user, setUser] = React.useState({
         email: ""
     })
@@ -58,4 +57,4 @@ const forgotpassword = () => {
   )
 }
 
-export default forgotpassword
+export default Forgotpassword

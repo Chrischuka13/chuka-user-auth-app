@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 
-export default function verifymail() {
+export default function Verifymail() {
   const [token, setToken] = useState("")
   const [isVerified, setIsVerified] = useState(false)
   const [error, setError] = useState("")
@@ -21,9 +21,8 @@ export default function verifymail() {
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1]
     setToken(urlToken || "")
-  }, [])
+  }, []);
 
-  //useeffect is a hook that runs the first time a page loads;
   //  if there is a manipulation in the token it would still run
   useEffect(() => {
     if (token.length > 0) {

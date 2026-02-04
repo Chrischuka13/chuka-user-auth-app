@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-const profilePage = () => {
+const ProfilePage = () => {
   const router = useRouter()
   const [data, setData] = useState("nothing")
 
@@ -52,4 +52,4 @@ const profilePage = () => {
   )
 }
 
-export default profilePage
+export default ProfilePage
