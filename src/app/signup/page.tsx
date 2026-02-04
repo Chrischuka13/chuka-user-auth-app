@@ -30,8 +30,8 @@ function SignupPage() {
       setSuccess("Verification link sent to your email")
       router.push("/login")
       
-    } catch (error :any) {
-      console.log("sign up failed", error.message);
+    } catch (error :unknown) {
+      console.log("sign up failed", error instanceof Error ? error.message : String(error));
     }finally {
       setLoading(false)
     }

@@ -4,7 +4,6 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 // import { MoonLoader } from 'react-spinners'
-import { useEffect } from 'react'
 
 function LoginPage() {
   const router = useRouter()
@@ -32,8 +31,8 @@ function LoginPage() {
       }
       router.push("/profile")
 
-    } catch (error :any) {
-      console.log("Login Failed", error.message);
+    } catch (error: unknown) {
+      console.log("Login Failed", error instanceof Error ? error.message : "Unknown error");
       setError("email or password not correct")
       setUser({email: "", password: ""})
       // toast.error(error.message)

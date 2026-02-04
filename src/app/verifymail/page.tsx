@@ -1,10 +1,10 @@
 'use client';
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useMemo} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 
 export default function Verifymail() {
-  const [token, setToken] = useState("")
+  const [, setToken] = useState("")
   const [isVerified, setIsVerified] = useState(false)
   const [error, setError] = useState("")
 
@@ -12,23 +12,30 @@ export default function Verifymail() {
     try {
         await axios.post('api/users/verifymail', {token})
         setIsVerified(true)
-    } catch (error :any) {
-        setError(error.messaage)
-        console.log(error.response.data);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            setError(error.message)
+        } else if (axios.isAxiosError(error) && error.response) {
+            setError(error.response.data?.message || 'Verification failed')
+            console.log(error.response.data);
+        } else {
+            setError('An unexpected error occurred')
+        }
     }
   }
   
-  useEffect(() => {
-    const urlToken = window.location.search.split("=")[1]
-    setToken(urlToken || "")
-  }, []);
+  const token = useMemo(() => {
+  if (typeof window === "undefined") return "";
+  return new URLSearchParams(window.location.search).get("token") ?? "";
+}, []);
+
 
   //  if there is a manipulation in the token it would still run
   useEffect(() => {
     if (token.length > 0) {
         verifyUserEmail()
     }
-  }, [token]); // anychange in the token would run this code
+  }, [token, verifyUserEmail]); // anychange in the token would run this code
 
 
   return (

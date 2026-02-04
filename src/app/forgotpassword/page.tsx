@@ -23,8 +23,8 @@ const Forgotpassword = () => {
             console.log(response.data);
             setUser({email: ""})
             setSuccess("reset password link sent successfully")
-        } catch (error :any) {
-            console.log(error.message);
+        } catch (error :unknown) {
+            console.log(error instanceof Error ? error.message : String(error));
             setError("forgot password failed") 
         }finally {
             setLoading(false)

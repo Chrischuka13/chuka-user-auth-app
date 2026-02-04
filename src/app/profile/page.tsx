@@ -16,9 +16,10 @@ const ProfilePage = () => {
       toast.success('logout successfully')
       router.push('login')
 
-    } catch (error :any) {
-      console.log(error.message);
-      toast.error(error.message)
+    } catch (error :unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.log(errorMessage);
+      toast.error(errorMessage)
     }
   }
   
